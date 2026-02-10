@@ -1,0 +1,21 @@
+name: vault_cache
+description: >-
+  A pure Dart cache library with multi-layer storage, stale-while-revalidate,
+  tag-based invalidation, and swappable storage adapters. Zero Flutter dependencies.
+version: 0.1.0
+homepage: https://github.com/danilospano/vault_cache
+repository: https://github.com/danilospano/vault_cache
+topics:
+  - cache
+  - storage
+  - dart
+
+environment:
+  sdk: ^3.5.0
+
+dependencies: {}
+
+dev_dependencies:
+  test: ^1.25.0
+  fake_async: ^1.3.0
+  lints: ^4.0.0
