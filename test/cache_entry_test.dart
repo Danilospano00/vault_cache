@@ -51,7 +51,8 @@ void main() {
       expect(entry.isExpired, isFalse);
     });
 
-    test('isStale is false when staleAt is null even if past TTL-equivalent', () {
+    test('isStale is false when staleAt is null even if past TTL-equivalent',
+        () {
       final entry = CacheEntry<String>(
         value: 'hello',
         createdAt: now(),

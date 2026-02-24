@@ -61,7 +61,7 @@ void main() {
 
     setUp(() {
       cache = VaultCache<String, String>(
-        policy: CachePolicy(ttl: const Duration(minutes: 5)),
+        policy: const CachePolicy(ttl: Duration(minutes: 5)),
         l1: MemoryStore<String, String>(),
       );
     });
@@ -93,7 +93,8 @@ void main() {
       await expectLater(cache.invalidateTag('t1'), completes);
     });
 
-    test('entry with multiple tags: invalidating one tag removes entry', () async {
+    test('entry with multiple tags: invalidating one tag removes entry',
+        () async {
       await cache.set('k1', 'v1', tags: {'a', 'b'});
       await cache.invalidateTag('a');
       expect(await cache.get('k1'), isNull);

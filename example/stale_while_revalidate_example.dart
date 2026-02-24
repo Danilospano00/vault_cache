@@ -11,9 +11,9 @@ Future<void> main() async {
   // TTL = 200ms → fresh window.
   // staleTtl = 800ms → stale window extends up to 200+800 = 1000ms after write.
   final cache = VaultCache<String, String>(
-    policy: CachePolicy(
-      ttl: const Duration(milliseconds: 200),
-      staleTtl: const Duration(milliseconds: 800),
+    policy: const CachePolicy(
+      ttl: Duration(milliseconds: 200),
+      staleTtl: Duration(milliseconds: 800),
     ),
     l1: MemoryStore<String, String>(),
   );
@@ -21,14 +21,16 @@ Future<void> main() async {
   // 1. First fetch — cold cache, blocks until fetcher returns.
   print('--- First call (cold cache) ---');
   final t0 = DateTime.now();
-  final v1 = await cache.getOrFetch('user_1', fetcher: () => fetchUserName('1'));
+  final v1 =
+      await cache.getOrFetch('user_1', fetcher: () => fetchUserName('1'));
   print('value: $v1');
   print('latency: ${DateTime.now().difference(t0).inMilliseconds}ms (blocked)');
 
   // 2. Second call — fresh entry, returns instantly.
   print('\n--- Second call (fresh) ---');
   final t1 = DateTime.now();
-  final v2 = await cache.getOrFetch('user_1', fetcher: () => fetchUserName('1'));
+  final v2 =
+      await cache.getOrFetch('user_1', fetcher: () => fetchUserName('1'));
   print('value: $v2');
   print('latency: ${DateTime.now().difference(t1).inMilliseconds}ms (~0ms)');
 
@@ -37,7 +39,8 @@ Future<void> main() async {
 
   print('\n--- Third call (stale-while-revalidate) ---');
   final t2 = DateTime.now();
-  final v3 = await cache.getOrFetch('user_1', fetcher: () => fetchUserName('1'));
+  final v3 =
+      await cache.getOrFetch('user_1', fetcher: () => fetchUserName('1'));
   print('value: $v3  ← stale value returned immediately');
   print('latency: ${DateTime.now().difference(t2).inMilliseconds}ms (~0ms)');
   print('background revalidation scheduled...');

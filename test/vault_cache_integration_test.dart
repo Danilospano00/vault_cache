@@ -63,7 +63,7 @@ void main() {
 
     test('expired entry is refetched on getOrFetch', () async {
       final shortCache = VaultCache<String, String>(
-        policy: CachePolicy(ttl: const Duration(milliseconds: 1)),
+        policy: const CachePolicy(ttl: Duration(milliseconds: 1)),
         l1: MemoryStore<String, String>(),
       );
       await shortCache.set('k', 'old');
@@ -95,7 +95,7 @@ void main() {
       final l1 = MemoryStore<String, String>();
       final l2 = MemoryStore<String, String>();
       final cache = VaultCache<String, String>(
-        policy: CachePolicy(ttl: const Duration(minutes: 5)),
+        policy: const CachePolicy(ttl: Duration(minutes: 5)),
         l1: l1,
         l2: l2,
       );

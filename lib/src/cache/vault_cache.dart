@@ -50,7 +50,7 @@ class VaultCache<K, V> {
 
   int _hits = 0;
   int _misses = 0;
-  int _evictions = 0;
+  final int _evictions = 0;
   int _revalidations = 0;
 
   // --------------------------------------------------------------------------

@@ -32,7 +32,7 @@ Future<void> main() async {
 
   final first = await cache.getOrFetch('data', fetcher: fakeFetch);
   final second = await cache.getOrFetch('data', fetcher: fakeFetch);
-  print('first:  $first');  // data from server
+  print('first:  $first'); // data from server
   print('second: $second'); // data from server (served from cache)
   print('fetch calls: $fetchCount'); // 1
 

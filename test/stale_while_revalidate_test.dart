@@ -10,7 +10,7 @@ void main() {
 
     test('fresh entry is returned immediately without fetcher call', () async {
       cache = VaultCache<String, String>(
-        policy: CachePolicy(ttl: const Duration(minutes: 5)),
+        policy: const CachePolicy(ttl: Duration(minutes: 5)),
         l1: MemoryStore<String, String>(),
       );
       await cache.set('k', 'initial');
@@ -25,7 +25,7 @@ void main() {
 
     test('expired entry triggers blocking fetch', () async {
       cache = VaultCache<String, String>(
-        policy: CachePolicy(ttl: const Duration(milliseconds: 1)),
+        policy: const CachePolicy(ttl: Duration(milliseconds: 1)),
         l1: MemoryStore<String, String>(),
       );
       await cache.set('k', 'old');
@@ -34,13 +34,14 @@ void main() {
       expect(value, equals('fresh'));
     });
 
-    test('stale entry is returned immediately; background refresh updates cache',
+    test(
+        'stale entry is returned immediately; background refresh updates cache',
         () async {
       // TTL = 10ms, staleTtl = 90ms  →  stale window is [10ms, 100ms]
       cache = VaultCache<String, String>(
-        policy: CachePolicy(
-          ttl: const Duration(milliseconds: 10),
-          staleTtl: const Duration(milliseconds: 90),
+        policy: const CachePolicy(
+          ttl: Duration(milliseconds: 10),
+          staleTtl: Duration(milliseconds: 90),
         ),
         l1: MemoryStore<String, String>(),
       );
@@ -76,9 +77,9 @@ void main() {
 
     test('concurrent stale requests deduplicate revalidation', () async {
       cache = VaultCache<String, String>(
-        policy: CachePolicy(
-          ttl: const Duration(milliseconds: 10),
-          staleTtl: const Duration(milliseconds: 90),
+        policy: const CachePolicy(
+          ttl: Duration(milliseconds: 10),
+          staleTtl: Duration(milliseconds: 90),
         ),
         l1: MemoryStore<String, String>(),
       );
@@ -106,9 +107,9 @@ void main() {
 
     test('fetcher error during revalidation keeps stale value', () async {
       cache = VaultCache<String, String>(
-        policy: CachePolicy(
-          ttl: const Duration(milliseconds: 10),
-          staleTtl: const Duration(milliseconds: 90),
+        policy: const CachePolicy(
+          ttl: Duration(milliseconds: 10),
+          staleTtl: Duration(milliseconds: 90),
         ),
         l1: MemoryStore<String, String>(),
       );
@@ -129,9 +130,9 @@ void main() {
 
     test('stats track revalidations', () async {
       cache = VaultCache<String, String>(
-        policy: CachePolicy(
-          ttl: const Duration(milliseconds: 10),
-          staleTtl: const Duration(milliseconds: 90),
+        policy: const CachePolicy(
+          ttl: Duration(milliseconds: 10),
+          staleTtl: Duration(milliseconds: 90),
         ),
         l1: MemoryStore<String, String>(),
       );

@@ -84,7 +84,7 @@ Future<void> main() async {
   final l2 = FakePersistentStore<String, String>(); // simulated disk layer
 
   final cache = VaultCache<String, String>(
-    policy: CachePolicy(ttl: const Duration(minutes: 5)),
+    policy: const CachePolicy(ttl: Duration(minutes: 5)),
     l1: l1,
     l2: l2,
   );
