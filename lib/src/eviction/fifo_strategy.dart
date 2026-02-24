@@ -6,6 +6,9 @@ import 'eviction_strategy.dart';
 /// Removes the oldest-written entry first, regardless of how frequently or
 /// recently it was accessed.
 class FifoStrategy<K> extends EvictionStrategy<K> {
+  /// Creates a [FifoStrategy] instance.
+  FifoStrategy();
+
   final List<K> _insertionOrder = [];
 
   @override

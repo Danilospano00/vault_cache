@@ -5,6 +5,8 @@ import '../cache/cache_entry.dart';
 /// Extend this class to provide a custom eviction policy. Built-in
 /// implementations: [LruStrategy], [LfuStrategy], [FifoStrategy].
 abstract class EvictionStrategy<K> {
+  /// Creates an [EvictionStrategy] instance.
+  const EvictionStrategy();
   /// Given the current [entries] map, returns the list of keys that should be
   /// removed to bring the store back within capacity.
   ///

@@ -7,6 +7,9 @@ import 'eviction_strategy.dart';
 /// triggered, the key with the lowest access count is removed first. Ties are
 /// broken by insertion order (oldest key wins).
 class LfuStrategy<K> extends EvictionStrategy<K> {
+  /// Creates an [LfuStrategy] instance.
+  LfuStrategy();
+
   final Map<K, int> _counts = {};
   final List<K> _insertionOrder = [];
 

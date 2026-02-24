@@ -8,6 +8,9 @@
 /// Errors thrown by the [fetcher] are swallowed silently so they never surface
 /// to callers who received the stale value.
 class RevalidationQueue<K, V> {
+  /// Creates a [RevalidationQueue] instance.
+  RevalidationQueue();
+
   final Map<K, Future<void>> _pending = {};
 
   /// Schedules a background revalidation for [key] if one is not already

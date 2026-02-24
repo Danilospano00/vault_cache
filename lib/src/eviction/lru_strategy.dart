@@ -6,6 +6,9 @@ import 'eviction_strategy.dart';
 /// Tracks the access order of keys. When eviction is triggered, the key that
 /// was least recently accessed (or written, if never read) is removed first.
 class LruStrategy<K> extends EvictionStrategy<K> {
+  /// Creates an [LruStrategy] instance.
+  LruStrategy();
+
   // Maintains insertion-order with efficient move-to-back on access.
   final _order = <K>[];
 
