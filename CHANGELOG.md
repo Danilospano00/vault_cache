@@ -1,3 +1,8 @@
+## 0.1.1
+
+* Fix repository and homepage URLs in `pubspec.yaml`.
+* Add explicit documented constructors to `EvictionStrategy`, `FifoStrategy`, `LfuStrategy`, `LruStrategy`, and `RevalidationQueue` to improve pub.dev API documentation score.
+
 ## 0.1.0
 
 * Initial release.
