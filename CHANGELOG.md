@@ -1,3 +1,7 @@
+## 0.1.2
+
+* Add `example/example.dart` as canonical entry point to satisfy pub.dev example check.
+
 ## 0.1.1
 
 * Fix repository and homepage URLs in `pubspec.yaml`.
